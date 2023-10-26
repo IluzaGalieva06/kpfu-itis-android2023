@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">kpfu-itis-android2023</string>
+    <string name="number_error">Error in the number</string>
+    <string name="end">End</string>
+    <string name="count_error">Max count can be 12</string>
+    <string name="number">number</string>
+    <string name="phone_number">phone number</string>
+    <string name="button">Button</string>
 </resources>
