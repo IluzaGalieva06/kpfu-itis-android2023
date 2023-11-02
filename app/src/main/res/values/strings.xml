@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">kpfu-itis-android2023</string>
+    <string name="count">Count</string>
+    <string name="button">Button</string>
+    <string name="count_error">Enter from 0 to 45</string>
+    <string name="btn_sheet">Button sheet</string>
 </resources>
