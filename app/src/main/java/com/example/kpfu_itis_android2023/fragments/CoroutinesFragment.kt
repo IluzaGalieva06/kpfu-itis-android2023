@@ -20,10 +20,7 @@ import kotlinx.coroutines.*
 
 class CoroutinesFragment : Fragment() {
 
-//    private lateinit var seekBar: SeekBar
-//    private lateinit var asyncCheckBox: CheckBox
-//    private lateinit var stopOnBackgroundCheckBox: CheckBox
-//    private lateinit var executeButton: Button
+
     private var _viewBinding: FragmentCoroutinesBinding? = null
     private val viewBinding: FragmentCoroutinesBinding
         get() = _viewBinding!!
@@ -43,11 +40,7 @@ class CoroutinesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(viewBinding) {
-//            seekBar = viewBinding.seekBar
-//            asyncCheckBox = viewBinding.checkBoxAsync
-//            stopOnBackgroundCheckBox = viewBinding.checkBoxStopOnBackground
-//            executeButton = viewBinding.buttonExecute
-//            Coroutine.count = seekBar.progress
+
 
             (requireActivity() as MainActivity).apply {
                 if (isAirplaneModeOn()) {
