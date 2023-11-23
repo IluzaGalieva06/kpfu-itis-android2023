@@ -45,7 +45,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
                 )
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             importanceSpinner.adapter = adapter
-//            val importanceInputLayout: TextInputLayout = viewBinding.importanceInputLayout
+
 
             importanceSpinner.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
@@ -87,8 +87,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
                     }
                 }
-//            val checkboxDetailedText = viewBinding.checkboxDetailedText
-//            val checkboxDisplayButtons = viewBinding.checkboxDisplayButtons
+
 
             checkboxDetailedText.setOnCheckedChangeListener { _, isChecked ->
                 Notifications.isBigText = isChecked
