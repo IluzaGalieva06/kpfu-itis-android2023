@@ -1,3 +1,33 @@
 <resources>
     <string name="app_name">kpfu-itis-android2023</string>
+    <string name="main_home">Main</string>
+    <string name="main_settings">Settings</string>
+    <string name="main_coroutines">Coroutines</string>
+    <string name="title">Заголовок уведомления</string>
+    <string name="text">Текст уведомления</string>
+    <string name="show_notification">Показать уведомление</string>
+    <string name="detailed_text">Подробный текст сообщения</string>
+    <string name="display_buttons">Отображение кнопок</string>
+    <string name="do_coroutines">Выполнить</string>
+    <string name="stop">Stop on background</string>
+    <string name="async">Async</string>
+    <string name="done">Всё</string>
+    <string name="cancellation">Отмена</string>
+    <string name="notification_off">Уведомления отключены</string>
+    <string name="turn_on_notification">Пожалуйста, включите получение уведомлений в настройках приложения</string>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </resources>
