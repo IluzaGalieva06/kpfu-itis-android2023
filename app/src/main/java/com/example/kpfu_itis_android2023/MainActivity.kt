@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
             OPEN_FRAGMENT_HOME -> replaceFragment(HomeFragment())
             OPEN_FRAGMENT_TOAST -> Toast.makeText(applicationContext, R.string.done, Toast.LENGTH_LONG).show()
             OPEN_FRAGMENT_SETTINGS -> replaceFragment(SettingsFragment())
-            else -> {/* обработка ошибки или других случаев */}
+            else -> {}
         }
 
 
