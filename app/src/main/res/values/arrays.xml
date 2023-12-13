@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sort_options">
+        <item>Год выпуска по убыванию</item>
+        <item>Год выпуска по возрастанию</item>
+        <item> Рейтинг пользователя по убыванию</item>
+        <item>Рейтинг пользователя по возрастанию</item>
+
+
+    </string-array>
+</resources>
