@@ -2,7 +2,4 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="favoriteColorSelected">#FF0000</color> <!-- Цвет кнопки при выборе избранного -->
-    <color name="favoriteColorUnselected">#808080</color> <!-- Цвет кнопки при снятии избранного -->
-
 </resources>

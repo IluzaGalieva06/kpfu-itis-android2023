@@ -51,7 +51,6 @@ class FilmAdapter(
         notifyDataSetChanged()
     }
     fun updateFavoriteFilms(favoriteFilms: List<FilmEntity>) {
-        // Обновляем список избранных фильмов в filmAdapter
         this.favoriteFilmIds.clear()
         this.favoriteFilmIds.addAll(favoriteFilms.map { it.filmId })
         notifyDataSetChanged()
