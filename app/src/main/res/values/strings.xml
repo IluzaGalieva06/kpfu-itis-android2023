@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">kpfu-itis-android2023</string>
+    <string name="password">Пароль</string>
+    <string name="email">Email</string>
+    <string name="registration">Зарегистрироваться</string>
+    <string name="login">Авторизоваться</string>
+    <string name="phone">Телефон</string>
+    <string name="name">Имя</string>
+    <string name="movieName">Название(Рейтинг)</string>
+    <string name="year">Год</string>
+    <string name="description">Описание</string>
+    <string name="save">Сохранить</string>
+    <string name="profile">Профиль</string>
+    <string name="add">Добавление</string>
+    <string name="main">Главная</string>
+    <string name="no_user">Такого пользователя нет</string>
+    <string name="there_is_user">Вы уже зарегистрировались</string>
+    <string name="empty">Заполните все поля</string>
+    <string name="delete">Удалить</string>
+    <string name="logout">Выйти</string>
+    <string name="ok">ОК</string>
+    <string name="phone_number_exists">Номер телефона уже существует</string>
+    <string name="phone_number_not_changed">Номер телефона остается прежним</string>
+    <string name="film_exist">Фильм уже есть в базе данных</string>
+    <string name="account_deleted">Вы удалили свой аккаунт навсегда</string>
+    <string name="user_account_deleted">Учетная запись была удалена</string>
+    <string name="choice">Вы хотите восстановить вашу учетную запись или удалить ее окончательно?</string>
+    <string name="recover">Восстановить</string>
+    <string name="not_unique">У вас не уникальный номер телефон</string>
+    <string name="empty_email_and_password">Введите email и пароль</string>
+
 </resources>
