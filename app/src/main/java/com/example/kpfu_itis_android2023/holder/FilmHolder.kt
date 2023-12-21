@@ -6,9 +6,16 @@ import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.example.kpfu_itis_android2023.R
+import com.example.kpfu_itis_android2023.data.db.dao.FilmRatingDao
 import com.example.kpfu_itis_android2023.data.db.entity.FilmEntity
 import com.example.kpfu_itis_android2023.databinding.ItemFilmBinding
 import com.example.kpfu_itis_android2023.util.FilmListType
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+
 
 class FilmHolder(
     private val binding: ItemFilmBinding,
@@ -24,10 +31,11 @@ class FilmHolder(
     fun onBind(
         filmEntity: FilmEntity,
         filmListType: FilmListType,
-        favoriteFilmIds: MutableList<Int>
+        favoriteFilmIds: MutableList<Int>,
+        filmRatingDao: FilmRatingDao,
+        userId: Int
     ) {
         with(binding) {
-            tvTitle.text = filmEntity.title
             root.setOnClickListener {
                 onItemClick(filmEntity)
             }
@@ -57,6 +65,18 @@ class FilmHolder(
                     favoriteFilmIds.remove(filmEntity.filmId)
                 }
             }
+            CoroutineScope(Dispatchers.IO).launch {
+                val filmRating = filmRatingDao.getRatingForFilm(userId, filmEntity.filmId)
+                withContext(Dispatchers.Main) {
+                    if (filmRating != null && filmRating != 0.0f) {
+                        val titleWithRating = "${filmEntity.title}(${filmRating})"
+                        binding.tvTitle.text = titleWithRating
+                    } else {
+                        tvTitle.text = filmEntity.title
+                    }
+                }
+            }
+
 
             glide.load(filmEntity.photoUrl)
                 .apply(options)

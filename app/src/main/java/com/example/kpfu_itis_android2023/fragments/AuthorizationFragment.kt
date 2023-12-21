@@ -49,87 +49,94 @@ class AuthorizationFragment : Fragment(R.layout.fragment_authorization) {
             btnLogin.setOnClickListener {
                 val email = etEmailAuthorization.text.toString()
                 val password = etPasswordAuthorization.text.toString()
+                if (email.isNotEmpty() && password.isNotEmpty()) {
 
+                    lifecycleScope.launch {
+                        val user = withContext(Dispatchers.IO) {
+                            userDao.getUserByEmailAndPassword(email, password)
+                        }
+                        withContext(Dispatchers.Main) {
 
-                lifecycleScope.launch {
-                    val user = withContext(Dispatchers.IO) {
-                        userDao.getUserByEmailAndPassword(email, password)
-                    }
-                    withContext(Dispatchers.Main) {
+                            if (user != null) {
+                                if (user.deletedAt > 0) {
+                                    val deletedTime = user.deletedAt
+                                    val currentTime = System.currentTimeMillis()
+                                    val elapsedDays =
+                                        (currentTime - deletedTime) / (24 * 60 * 60 * 1000)
+                                    if (elapsedDays >= 7) {
+                                        lifecycleScope.launch {
+                                            withContext(Dispatchers.IO) {
+                                                userDao.deleteUser(user.userId)
+                                            }
+                                            withContext(Dispatchers.Main) {
+                                                Toast.makeText(
+                                                    requireContext(),
+                                                    getString(R.string.account_deleted),
+                                                    Toast.LENGTH_LONG
+                                                )
+                                                    .show()
 
-                        if (user != null) {
-                            if (user.deletedAt > 0) {
-                                val deletedTime = user.deletedAt
-                                val currentTime = System.currentTimeMillis()
-                                val elapsedDays =
-                                    (currentTime - deletedTime) / (24 * 60 * 60 * 1000)
-                                if (elapsedDays >= 7) {
-                                    lifecycleScope.launch {
-                                        withContext(Dispatchers.IO) {
-                                            userDao.deleteUser(user.userId)
+                                            }
                                         }
-                                        withContext(Dispatchers.Main) {
-                                            Toast.makeText(
-                                                requireContext(),
-                                                getString(R.string.account_deleted),
-                                                Toast.LENGTH_LONG
-                                            )
-                                                .show()
+                                    } else {
+                                        showRestoreDialog(user.userId)
 
-                                        }
                                     }
+
                                 } else {
-                                    showRestoreDialog(user.userId)
 
+                                    val sessionManager = SessionManager(requireContext())
+                                    sessionManager.saveSession()
+                                    val sharedPreferences = requireContext().getSharedPreferences(
+                                        "user_data",
+                                        Context.MODE_PRIVATE
+                                    )
+                                    val editor = sharedPreferences.edit()
+                                    editor.putInt("user_id", user.userId)
+                                    editor.apply()
+
+
+                                    activity?.supportFragmentManager?.beginTransaction()?.apply {
+                                        replace(
+                                            R.id.main_activity_container,
+                                            MainFragment()
+                                        )
+                                        addToBackStack(null)
+                                        commit()
+
+                                    }
                                 }
-
 
                             } else {
-
-                                val sessionManager = SessionManager(requireContext())
-                                sessionManager.saveSession()
-                                val sharedPreferences = requireContext().getSharedPreferences(
-                                    "user_data",
-                                    Context.MODE_PRIVATE
+                                Toast.makeText(
+                                    requireContext(),
+                                    getString(R.string.no_user),
+                                    Toast.LENGTH_LONG
                                 )
-                                val editor = sharedPreferences.edit()
-                                editor.putInt("user_id", user.userId)
-                                editor.apply()
-
-
-                                activity?.supportFragmentManager?.beginTransaction()?.apply {
-                                    replace(
-                                        R.id.main_activity_container,
-                                        MainFragment()
-                                    )
-                                    addToBackStack(null)
-                                    commit()
-
-                                }
+                                    .show()
                             }
-
-                        } else {
-                            Toast.makeText(
-                                requireContext(),
-                                getString(R.string.no_user),
-                                Toast.LENGTH_LONG
-                            )
-                                .show()
                         }
                     }
-                }
-            }
-
-            btnRegister.setOnClickListener {
-                activity?.supportFragmentManager?.beginTransaction()?.apply {
-                    replace(
-                        R.id.main_activity_container,
-                        RegistrationFragment()
-                    )
-                    addToBackStack(null)
-                    commit()
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.empty_email_and_password),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
 
+
+                btnRegister.setOnClickListener {
+                    activity?.supportFragmentManager?.beginTransaction()?.apply {
+                        replace(
+                            R.id.main_activity_container,
+                            RegistrationFragment()
+                        )
+                        addToBackStack(null)
+                        commit()
+                    }
+
+                }
             }
         }
     }

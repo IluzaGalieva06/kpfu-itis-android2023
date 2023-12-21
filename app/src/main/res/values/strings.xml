@@ -6,7 +6,7 @@
     <string name="login">Авторизоваться</string>
     <string name="phone">Телефон</string>
     <string name="name">Имя</string>
-    <string name="movieName">Название</string>
+    <string name="movieName">Название(Рейтинг)</string>
     <string name="year">Год</string>
     <string name="description">Описание</string>
     <string name="save">Сохранить</string>
@@ -27,4 +27,6 @@
     <string name="choice">Вы хотите восстановить вашу учетную запись или удалить ее окончательно?</string>
     <string name="recover">Восстановить</string>
     <string name="not_unique">У вас не уникальный номер телефон</string>
+    <string name="empty_email_and_password">Введите email и пароль</string>
+
 </resources>

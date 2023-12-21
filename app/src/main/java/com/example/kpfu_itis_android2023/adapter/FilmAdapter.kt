@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
+import com.example.kpfu_itis_android2023.data.db.dao.FilmRatingDao
 import com.example.kpfu_itis_android2023.data.db.entity.FilmEntity
 import com.example.kpfu_itis_android2023.databinding.ItemFilmBinding
 import com.example.kpfu_itis_android2023.holder.FilmHolder
@@ -16,7 +17,9 @@ class FilmAdapter(
     private val onDeleteClick: (Int) -> Unit,
     private var filmListType: FilmListType,
     private val onFavoriteClick: (Int) -> Unit,
-    private var favoriteFilmIds: MutableList<Int>
+    private var favoriteFilmIds: MutableList<Int>,
+    private val filmRatingDao: FilmRatingDao,
+    private val userId: Int
 ) : RecyclerView.Adapter<FilmHolder>() {
 
     override fun onCreateViewHolder(
@@ -39,7 +42,7 @@ class FilmAdapter(
         holder: FilmHolder,
         position: Int
     ) {
-        holder.onBind(list[position], filmListType, favoriteFilmIds)
+        holder.onBind(list[position], filmListType, favoriteFilmIds, filmRatingDao, userId)
 
 
     }

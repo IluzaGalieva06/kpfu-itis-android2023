@@ -96,7 +96,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 { position -> removeFilm(position, FilmListType.ALL_MOVIES) },
                 FilmListType.ALL_MOVIES,
                 { position -> toggleFavorite(position) },
-                loadFilmsId()
+                loadFilmsId(),
+                filmRatingDao,
+                userId
             )
 
         viewBinding.recyclerViewAllMovies.adapter = filmAdapter
@@ -127,7 +129,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                     { },
                     FilmListType.FAVORITE_MOVIES,
                     { position -> toggleFavorite(position, FilmListType.FAVORITE_MOVIES) },
-                    loadFilmsId()
+                    loadFilmsId(),
+                    filmRatingDao,
+                    userId
                 )
             viewBinding.recyclerViewFavorites.adapter = filmFavoriteAdapter
             viewBinding.recyclerViewFavorites.visibility = View.VISIBLE
